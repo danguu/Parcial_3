@@ -1,0 +1,28 @@
+<program>   ::= <stmt_list> EOF
+
+<stmt_list> ::= <stmt_list> <stmt> ";"
+              | <stmt> ";"
+
+<stmt>      ::= <matrix_decl>
+              | <assign>
+              | <print_stmt>
+
+<matrix_decl> ::= "mat" ID "[" INT "," INT "]" "=" <matrix_lit>
+
+<assign>       ::= ID "=" <expr>
+
+<print_stmt>   ::= "print" ID
+
+<expr>      ::= <mult_expr>
+
+<mult_expr> ::= <primary> { "*" <primary> }
+
+<primary>   ::= ID
+              | <matrix_lit>
+              | "(" <expr> ")"
+
+<matrix_lit> ::= "[" <row> { "," <row> } "]"
+
+<row>       ::= "[" <num> { "," <num> } "]"
+
+<num>       ::= INT | FLOAT
